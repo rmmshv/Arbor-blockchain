@@ -65,7 +65,7 @@ console.log(JSON.stringify(arbor_coin, null, 4) + '\n');
 console.log("'\n'is blockchain valid?: " + arbor_coin.is_valid() + '\n');
 
 // test is_valid function
-arbor_coin.chain[1].data = {amount:100}; i
+arbor_coin.chain[1].data = {amount:100}; 
 
 console.log("'\n'is blockchain  valid?: " + arbor_coin.is_valid() + '\n');
 
