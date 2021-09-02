@@ -15,7 +15,7 @@ class Block {
     }
 }
 
-class Blochchain{
+class Blockchain{
     constructor(){
         this.chain = [this.generate_genesis()]; // array of blocks, starts with the genesis block
     }
@@ -56,7 +56,7 @@ class Blochchain{
 }
 
 // initiate blockchain
-let arbor_coin = new Blochchain();
+let arbor_coin = new Blockchain();
 arbor_coin.add_block(new Block(1, "09/01/2021", {amount: 4}));
 arbor_coin.add_block(new Block(2, "09/02/2021", {amount: 10}));
 
