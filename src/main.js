@@ -1,7 +1,7 @@
 const {Blockchain, Transaction} = require('./blockchain');
 
 
-// initiate blockchain
+// run the blockchain
 let arbor_coin = new Blockchain();
 
 // new transaction
