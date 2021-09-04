@@ -7,17 +7,27 @@ class Block {
         this.data = data;
         this.prev_hash = prev_hash;
         this.hash = this.calculate_hash();
+        this.nonce = 0;
     }
 
     // calculate hash of the current block
     calculate_hash() {
-    return SHA256(this.index + this.prev_hash + this.timestamp + JSON.stringify(this.data)).toString();
+    return SHA256(this.index + this.prev_hash + this.timestamp + JSON.stringify(this.data) + this.nonce).toString();
+    }
+    // adds proof of work
+    mining(difficulty) {
+        while(this.hash.substring(0, difficulty) != Array(difficulty + 1).join("0")) {
+            this.nonce++;
+            this.hash = this.calculate_hash();
+        }
+        console.log("Block mined: " + this.hash);
     }
 }
 
 class Blockchain{
     constructor(){
         this.chain = [this.generate_genesis()]; // array of blocks, starts with the genesis block
+        this.difficulty = 5; // the higher difficulty value is, the longer it takes to generate new block
     }
     // manualy creating genesis block
     generate_genesis(){
@@ -30,7 +40,7 @@ class Blockchain{
     // new block contains hash of the previous block and its own hash
     add_block(new_block){
         new_block.prev_hash = this.get_last_block().hash;
-        new_block.hash = new_block.calculate_hash();
+        new_block.mining(this.difficulty)
         this.chain.push(new_block); // push\add this block to the blockchain
     }
 
@@ -55,11 +65,17 @@ class Blockchain{
     }
 }
 
+
+
 // initiate blockchain
 let arbor_coin = new Blockchain();
-arbor_coin.add_block(new Block(1, "09/01/2021", {amount: 4}));
-arbor_coin.add_block(new Block(2, "09/02/2021", {amount: 10}));
 
+console.log("block 1: ")
+arbor_coin.add_block(new Block(1, "09/01/2021", {amount: 4}));
+
+console.log("block 2: ")
+arbor_coin.add_block(new Block(2, "09/02/2021", {amount: 10}));
+/*
 console.log(JSON.stringify(arbor_coin, null, 4) + '\n');
 
 console.log("'\n'is blockchain valid?: " + arbor_coin.is_valid() + '\n');
@@ -71,4 +87,4 @@ console.log("'\n'is blockchain  valid?: " + arbor_coin.is_valid() + '\n');
 
 arbor_coin.chain[1].hash = arbor_coin.chain[1].calculate_hash();
 console.log("'\n'is blockchain  valid?: " + arbor_coin.is_valid() + '\n') ;
-
+*/
