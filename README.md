@@ -20,6 +20,6 @@ node main.js
 MIT
 
 # Acknowledgments and Resources
-The program is still in a draft state, only the basic functionality is present and many changes to come.
+The program is still in the draft stage, only basic functionality is present and there are many changes to be made.
 - https://nodejs.org/api/crypto.html crypto standart library documentation
 - https://www.youtube.com/watch?v=zVqczFZr124&ab_channel=SimplyExplained tutorial that helped create the program
